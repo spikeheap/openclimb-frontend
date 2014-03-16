@@ -2,11 +2,19 @@ angular.module('openclimb-frontend', ['ui.bootstrap','ui.utils','ui.router','ngA
 
 angular.module('openclimb-frontend').config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 
-    $stateProvider.state('home', {
+    $stateProvider.state('landing', {
         url: '/',
-        templateUrl: 'partial/home/home.html'
+        templateUrl: 'partial/landing/landing.html'
+    });
+    $stateProvider.state('training-dashboard', {
+        url: '/training',
+        templateUrl: 'training/dashboard-partial/training-dashboard.html'
+    });
+    $stateProvider.state('climbs-dashboard', {
+        url: '/climbs',
+        templateUrl: 'climbs/dashboard-partial/climbs-dashboard.html'
     });
     /* Add New States Above */
 

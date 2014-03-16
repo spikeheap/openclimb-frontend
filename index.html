@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="openclimb-frontend">
 <head>
-  <title></title>
+  <title ng-bind="$state.current.name"></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
   <link href="app.less" type="text/css" rel="stylesheet/less">
@@ -28,14 +28,14 @@
 
   <!-- Main App JS -->
   <script src="app.js"></script>
-  <script src="partial/home/home.js"></script>
+  <script src="service/ClimbApi.js"></script>
+  <script src="partial/landing/landing.js"></script>
+  <script src="climbs/dashboard-partial/climbs-dashboard.js"></script>
   <!-- Add New Component JS Above -->
 
   <div>
     <div id="content" class="container">
-      <div class="row">
         <div ui-view>
-        </div>
       </div>
     </div>
   </div>

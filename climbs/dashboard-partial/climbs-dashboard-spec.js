@@ -1,4 +1,4 @@
-describe('HomeCtrl', function() {
+describe('ClimbsDashboardCtrl', function() {
 
 	beforeEach(module('openclimb-frontend'));
 
@@ -6,7 +6,7 @@ describe('HomeCtrl', function() {
 
     beforeEach(inject(function($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('HomeCtrl', {$scope: scope});
+      ctrl = $controller('ClimbsDashboardCtrl', {$scope: scope});
     }));	
 
 	it('should ...', inject(function() {

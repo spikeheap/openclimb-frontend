@@ -1,0 +1,88 @@
+<div class="row">
+	<div class="col-md-12" ng-controller="TrainingDashboardCtrl">
+		<p>This month you've logged XX climbs (top YY%)</p>
+	</div>
+</div>
+<div class="row">
+	<form role="form">
+		<div class="col-md-6">
+			<div class="form-group">
+			    <label for="climbName">Log a climb</label>
+				<input name="climbName" type="email" class="form-control" ng-model="climbName" placeholder="Name of climb" required>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+			    <label for="dateOfAscent">Date of ascent</label> <span>today</span> <span>yesterday</span>
+				<input name="dateOfAscent" type="date" class="form-control" ng-model="dateOfAscent" placeholder="Date completed" required>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<h3>Logbook</h3>
+		<ul>
+			<li>
+				<a>
+					<span class="climb-name">Holy, Holy, Holy</span>
+					<span class="climb-grade">E2 5c</span>
+					<span class="climb-location">Dali's Hole</span>
+					<span class="climb-date">15/01/2011</span>
+					<span class="climb-labels">
+						<ul>
+							<li>2x</li>
+							<li>lead</li>
+							<li>slate</li>
+						</ul>
+					</span>
+				</a>
+			</li>
+			<li>
+				<a>
+					<span class="climb-name">Poetry Pink</span>
+					<span class="climb-grade">E5 6a</span>
+					<span class="climb-location">Rainbow Slab</span>
+					<span class="climb-date">22/04/2012</span>
+					<span class="climb-labels">
+						<ul>
+							<li>2nd</li>
+							<li>slate</li>
+						</ul>
+					</span>
+				</a>
+			</li>
+			<li>
+				<a>
+					<span class="climb-name">Pull My Daisy</span>
+					<span class="climb-grade">E2 5c</span>
+					<span class="climb-location">Rainbow Slab</span>
+					<span class="climb-date">10/05/2012</span>
+					<span class="climb-labels">
+						<ul>
+							<li>lead</li>
+							<li>slate</li>
+							<li>PB</li>
+						</ul>
+					</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<h3>Recent achievements</h3>
+		<ul>
+			<li><span class="timestamp">10/05/2012</span>You climbed your first E2</li>
+			<li><span class="timestamp">31/03/2014</span>You came 123rd in the UK March routing league</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<h3>Activity stream</h3>
+		<ul>
+			<li><span class="timestamp">31/03/2014</span>Glyn topped the North Wales Bouldering Summer Aggregate for March</li>
+			<li><span class="timestamp">10/02/2014</span>Luke climbed his first V9</li>
+			<li><span class="timestamp">10/02/2014</span>Luke climbed Jerry's Roof <span class="grade">7C</span><span class="grade">V9</span></li>
+			<li><span class="timestamp">10/05/2012</span>Ryan climbed his first E2</li>
+		</ul>
+	</div>
+</div>

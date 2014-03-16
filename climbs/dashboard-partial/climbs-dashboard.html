@@ -1,0 +1,77 @@
+<div class="row">
+	<div class="col-md-12">
+		<p>Past 30 days: contributed to X routes, reviewed Y edits (top YY%)</p>
+	</div>
+</div>
+<div ng-controller="ClimbsDashboardCtrl">
+<div class="row" >
+	<div class="col-xs-12">
+		<form role="form">
+			<div class="form-group">
+				<label for="climbName">Find a climb, venue or location</label>
+				<div class="input-group">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" ng-click="getCurrentLocation()" ng-show="supportsGeo">Find me</button>
+				      </span>
+					  <input name="climbName" type="text" class="form-control" ng-model="locationSearch" placeholder="Climb, venue, location, postcode">
+				</div>
+			    |------------distance-slider------------|
+			</div>
+			<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+		</form>
+			
+	</div>
+</div>
+<div class="row" >
+	<div class="col-sm-4">|------------ grade-slider------------|</div>
+	<div class="col-sm-4">|------------ stars-slider------------|</div>
+	<div class="col-sm-4">
+		<ul class="grade-labels">
+			<li ng-repeat="rockType in rockTypes">{{rockType}}</li>
+		</ul
+	</div>  	
+</div>
+<hr>
+<div class="row">
+	<div class="col-sm-6">
+		<h4>Venues</h4>
+		<ul>
+			<li>
+				Dinorwig Quarries
+				<ul>
+					<li>Dali's Hole'</li>
+					<li>Rainbow Slab</li>
+					<li>Vivian Quarry</li>
+				</ul>
+			</li>
+			<li>Llanberis Pass
+				<ul>
+					<li>Carreg Wastad</li>
+					<li>Dinas Mot
+						<ul>
+							<li>The Nose</li>
+							<li>The Barrel</li>
+							<li>The Eastern Wing</li>
+							<li>Beginners Mind Crag</li>
+							<li>Western Wing</li>
+							<li>Plexus Buttress</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>Rainbow Slab</li>
+			<li>Vivian Quarry</li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="col-sm-6">
+		<h4>Climbs</h4>
+		<a>show descriptions</a>
+		<table>
+			<tr ng-repeat="climb in climbs">
+				<td>{{climb.name}}</td><td>{{climb.grade}}</td><td>{{climb.length}}</td><td>{{climb.stars}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>
