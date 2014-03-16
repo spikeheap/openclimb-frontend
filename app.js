@@ -4,6 +4,10 @@ angular.module('openclimb-frontend').config(function($stateProvider, $urlRouterP
 
     $urlRouterProvider.otherwise('/home');
 
+    $stateProvider.state('home', {
+        url: '/',
+        templateUrl: 'partial/home/home.html'
+    });
     /* Add New States Above */
 
 });
