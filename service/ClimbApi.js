@@ -1,8 +1,8 @@
-angular.module('openclimb-frontend').factory('ClimbApi',function() {
+angular.module('openclimb-frontend').factory('ClimbApi', function($q) {
 
 	var ClimbApi = {
 		getClimbs: function () {
-			return [
+			return $q.when([
 			{
 				name: "Holy, Holy, Holy",
 				length: "11m",
@@ -81,23 +81,16 @@ angular.module('openclimb-frontend').factory('ClimbApi',function() {
 				name: "Stairway to Heaven",
 				grade: "E3 5c",
 				stars: 2
-			}];
+			}]);
 		},
 		
 		getVenues: function () {
-			return [
-			{
-				name: "Dinorwig Quarries",
-				venues: [
-					{ name: "Dali's Hole" },
-					{ name: "Rainbow Slab" },
-					{ name: "Vivian Quarry" }
-				]
-			},{
-				name: "Llanberis Pass",
-				venues: [
-					{ name: "Carreg Wastad" },
-					{ name: "Dinas Mot", venues: [
+			return $q.when([
+					{ name: "Dali's Hole", lat:53.123578, lng:-4.102395 },
+					{ name: "Rainbow Slab", lat:53.119634, lng:-4.104888 },
+					{ name: "Vivian Quarry", lat:53.123162, lng:-4.113382 },
+					{ name: "Carreg Wastad", lat:53.093143, lng: -4.057253 },
+					{ name: "Dinas Mot", lat: 53.086613, lng: -4.052036, venues: [
 							{ name: "The Nose" },
 							{ name: "The Barrel" },
 							{ name: "The Eastern Wing" },
@@ -106,18 +99,16 @@ angular.module('openclimb-frontend').factory('ClimbApi',function() {
 							{ name: "Plexus Buttress" }
 						]
 					}
-				]
-			}
-			];
+			]);
 		},
 		
 		getRockTypes: function () {
-			return [
+			return $q.when([
 				"slate",
 				"limestone",
 				"gritstone",
 				"granite",
-			];
+			]);
 		}
 	};
 

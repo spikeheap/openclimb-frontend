@@ -5,7 +5,7 @@
 </div>
 <div ng-controller="ClimbsDashboardCtrl">
 <div class="row" >
-	<div class="col-xs-12">
+	<div class="col-md-6">
 		<form role="form">
 			<div class="form-group">
 				<label for="climbName">Find a climb, venue or location</label>
@@ -17,9 +17,12 @@
 				</div>
 			    |------------distance-slider------------|
 			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block">Find climbs</button>
 		</form>
 			
+	</div>
+	<div class="col-md-6">
+		<leaflet height="250px" markers="markers" center="mapCentre"></leaflet>
 	</div>
 </div>
 <div class="row" >
