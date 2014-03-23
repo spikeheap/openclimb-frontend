@@ -15,25 +15,34 @@
 				      </span>
 					  <input name="climbName" type="text" class="form-control" ng-model="locationSearch" placeholder="Climb, venue, location, postcode">
 				</div>
-			    |------------distance-slider------------|
+				<div class="form-group">
+					<label>Min/Max distance</label>
+					<div ui-slider="{range: true}" min="0" max="200" ng-model="search.distance"></div>
+				</div>
+				<div class="form-group">
+					<label>Grade</label>
+					<div ui-slider="{range: true}" min="0" max="200" ng-model="search.distance"></div>
+				</div>
+				<div class="form-group">
+					<label>Stars</label>
+					<div ui-slider="{range: true}" min="0" max="200" ng-model="search.distance"></div>
+				</div>
+				<div class="form-group">
+					<label>Rock type</label>
+					<ul class="rockType-labels">
+						<li class="btn btn-default btn-xs" ng-repeat="rockType in rockTypes">{{rockType}}</li>
+					</ul>
+				</div>
 			</div>
 			<button type="button" class="btn btn-primary btn-lg btn-block">Find climbs</button>
 		</form>
-			
+	
 	</div>
 	<div class="col-md-6">
-		<leaflet height="250px" markers="markers" center="mapCentre"></leaflet>
+		<leaflet height="250px" markers="markers" paths="map.paths" center="map.centre"></leaflet>
 	</div>
 </div>
-<div class="row" >
-	<div class="col-sm-4">|------------ grade-slider------------|</div>
-	<div class="col-sm-4">|------------ stars-slider------------|</div>
-	<div class="col-sm-4">
-		<ul class="grade-labels">
-			<li ng-repeat="rockType in rockTypes">{{rockType}}</li>
-		</ul
-	</div>  	
-</div>
+
 <hr>
 <div class="row">
 	<div class="col-sm-6">

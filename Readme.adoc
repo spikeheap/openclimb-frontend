@@ -1,0 +1,92 @@
+= OpenClimb Frontend
+Ryan Brooks
+
+OpenClimb is an open-source repository of climbing information, including:
+
+. A database of climbs, climbing areas and links to access information
+. A logbook to record climbs and projects
+
+
+== Service requirements
+
+This system has been designed against the OpenClimb server, however it is fully decoupled and will run against any backend capable of providing the following services (URLs are provided for illustration purposes, but can be changed trivially):
+
+=== `/api/venues`
+Provides a list of venues in JSON HAL format, accepting the following GET parameters:
+
+. `max=10`, the maximum number of results to return, defaults to 10.
+. `offset=10`, the number of records to offset the first result by. Used in conjunction with `max` to achieve pagination.
+. `searchPoint={ "type": "Point", "coordinates": [100.0, 0.0] }`, where the value is a valid GeoJSON object containing a http://geojson.org/geojson-spec.html#id2[Point]. The following additional parameters require `searchPoint`:
+.. `withinRadius=n`, restricts the set of venues to those within `n` metres of the `locationPoint`.
+.. `within=p`, restricts the set of venues to those within the provided http://geojson.org/geojson-spec.html#polygon[GeoJSON Polygon] `p` (possibly including holes), e.g.:
+[source,json]
+{ 
+	"type": "Polygon", 
+	"coordinates": [
+		[ 
+			[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0] ]
+		] 
+}
+
+The response is a GeoJSON object containing http://geojson.org/geojson-spec.html#id2[Points] or http://geojson.org/geojson-spec.html#polygon[Polygons] , e.g.:
+[source, json]
+{
+	"type": "FeatureCollection", 
+	"max": 10,
+	"offset": 20,
+	"total": 100,
+	"features": [
+	{ 
+		"type": "Feature",
+		"geometry": {"type": "Point", "coordinates": [53.123578, -4.102395] },
+		"properties": {"name": "Dali's Hole"}
+	},
+	{ 
+		"type": "Feature",
+		"geometry": {"type": "Point", "coordinates": [53.119634, -4.104888] },
+		"properties": {"name": "Rainbow Slab"}
+	},
+	{ 
+		"type": "Feature",
+		"geometry": { "type": "Polygon",
+			"coordinates": [
+			  [ [53.123160, -4.113380], [53.123170, -4.113380], [53.123170, -4.113390], [53.123160, -4.113390], [53.123160, -4.113380] ]
+			]
+		}
+		"properties": {"name": "Vivian Quarry"}
+	},
+	{ 
+		"type": "Feature",
+		"geometry": {"type": "Point", "coordinates": [53.093143, -4.057253] },
+		"properties": {"name": "Carreg Wastad"}
+	}
+  ]
+}
+	 	
+. If `searchPoint` is specified, all venues contain a `distance` integer property with the distance from `searchPoint` in metres.
+
+=== `/api/climbs`
+
+== License
+
+The OpenClimb Frontend source code is released under the The MIT License (MIT).
+
+Copyright (c) <2013-2014> <Ryan Brooks>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

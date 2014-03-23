@@ -1,4 +1,4 @@
-angular.module('openclimb-frontend', ['ui.bootstrap','ui.utils','ui.router','ngAnimate', 'leaflet-directive']);
+angular.module('openclimb-frontend', ['ui.bootstrap','ui.utils','ui.router','ngAnimate', 'leaflet-directive', 'ui.slider']);
 
 angular.module('openclimb-frontend').config(function($stateProvider, $urlRouterProvider) {
 
