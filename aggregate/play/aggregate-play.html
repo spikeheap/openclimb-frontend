@@ -1,0 +1,36 @@
+<div class="aggregate-player" ng-controller="AggregatePlayCtrl">
+	<h1>North Wales summer bouldering aggregate</h1>
+	<span class="tagline">{{startDate}} - {{endDate}}</span>
+	<div class=labels>
+		<ul>
+			<li>bouldering</li>
+		</ul>
+	</div>
+
+	<div class="stats-row">
+		<div>
+			<span class="huge-number">{{daysLeft}}</span> days left
+		</div>
+		<div>
+			<span class="huge-number">{{climbsRemaining}}</span> remaining
+		</div>
+		<div>
+			<span class="huge-number">{{position}}</span> /122
+		</div>
+	</div>
+
+<div class="climb-list">
+	<h3>Ticklist</h3>
+	<ul class="ticklist">
+		<li ng-repeat="climb in climbs" ng-class="{ticked: climb.ticked}" ng-click="climb.ticked = !climb.ticked"><span class="grade grade-band-{{climb.grade.band}}">{{climb.grade.label}}</span> <strong>{{climb.name}}</strong>, {{climb.location}}</li>
+	</ul>
+</div>
+
+<div class="leaderboard">
+	<h3>Leaderboard</h3>
+	<ol>
+		<li ng-repeat="user in competitors | orderBy:'tickCount':true" ng-class="{evens: competitor.tickCount === user.tickCount}"><strong>{{user.name}}</strong>, {{user	.tickCount}}</li>
+	</ol>
+</div>
+
+</div>

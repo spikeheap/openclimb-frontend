@@ -1,28 +1,42 @@
 angular.module('openclimb-frontend').controller('ClimbsDashboardCtrl',function($scope, ClimbApi, $window, $timeout){
 
-				
+
 	ClimbApi.getVenues().then(function (data) {
 		$scope.markers = data;
 	});
-	
-	ClimbApi.getClimbs().then(function (data) {
-		$scope.climbs = data;
-	});
-	
+
+
 	ClimbApi.getRockTypes().then(function (data) {
 		$scope.rockTypes = data;
 	});
-	
+
+	$scope.requestClimbs = function (query) {
+		ClimbApi.getClimbs(query).then(function (data) {
+			$scope.climbs = _.map(data, function(climb){
+				climb.obj.distance = climb.dis;
+				return climb.obj;
+			});
+
+			$scope.markers = _.map(data, function (marker) {
+				return {
+					name: marker.obj.name,
+					lng: marker.obj.loc[1],
+					lat: marker.obj.loc[0],
+				};
+			});
+		});
+	};
+
 	/**
 	* Geolocation support
-	**/ 
+	**/
 	$scope.supportsGeo = $window.navigator;
 	$scope.getCurrentLocation = function () {
 		$window.navigator.geolocation.getCurrentPosition(function(position) {
 	        $scope.$apply(function() {
 	            $scope.position = position;
 							if(position.coords !== undefined && position.coords != null){
-								$scope.locationSearch = "lat:"+position.coords.latitude +", long:"+ position.coords.longitude;
+								$scope.search.query = "lat:"+position.coords.latitude +", long:"+ position.coords.longitude;
 							}
 							$scope.search.centre = $scope.map.centre = {
 							    lat: position.coords.latitude,
@@ -34,9 +48,9 @@ angular.module('openclimb-frontend').controller('ClimbsDashboardCtrl',function($
 	        console.log(error);
 	    });
 	};
-	
 
-	
+
+
 	/**
 	 * Leaflet Mapping
 	 **/
@@ -46,7 +60,7 @@ angular.module('openclimb-frontend').controller('ClimbsDashboardCtrl',function($
 	    scrollWheelZoom: false
 	};
 	$scope.map.centre = {
-	    lat:53.123578, 
+	    lat:53.123578,
 		lng:-4.102395,
 	    zoom: 12
 	};
@@ -87,7 +101,7 @@ angular.module('openclimb-frontend').controller('ClimbsDashboardCtrl',function($
 	$scope.search = [];
 	$scope.search.distance = [2,10];
 	$scope.search.centre = $scope.map.centre;
-	
+
 	$scope.$watch('search.distance', function () {
 		$scope.map.paths[0].radius = $scope.search.distance[0] * 1000;
 		$scope.map.paths[1].radius = $scope.search.distance[1] * 1000;
@@ -96,5 +110,5 @@ angular.module('openclimb-frontend').controller('ClimbsDashboardCtrl',function($
 		$scope.map.paths[0].latlngs = $scope.search.centre;
 		$scope.map.paths[1].latlngs = $scope.search.centre;
 	});
-	
+
 });

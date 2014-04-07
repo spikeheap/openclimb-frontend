@@ -1,0 +1,115 @@
+.aggregate-player {
+
+	.make-sm-column(12);
+
+	.stats-row {
+
+		.make-row();
+		.border-radius(5px);
+		background-color: #cecece;
+
+		// DIVs default to 1/3 width columns
+		div{
+			.make-xs-column(4);
+		}
+
+		.huge-number{
+			font-size: 3.5em;
+		}
+	}
+
+	.climb-list{
+		.make-row();
+		.make-sm-column(12);
+	}
+
+	.leaderboard{
+		.make-row();
+		.make-sm-column(12);
+
+		ol{
+			list-style-type: none;
+
+			// Evenly matched rankings
+			.evens{
+				background-color: lighten(@brand-success, 40%);
+			}
+		}
+
+	}
+
+	.labels {
+		li {
+			.label();
+			.label-info();
+		}
+	}
+
+	// An unordered list with ticks (or not) instead of bullets
+	.ticklist{
+		.fa-ul();
+
+		li{
+			// Default to un-ticked square
+			.fa-list-item(@fa-var-square-o);
+
+			.grade{
+				.label();
+				.label-info();
+
+				.grade-bands(@gray-light);
+			}
+
+			// Ticked class on li makes it a checked-square
+			&.ticked{
+				.fa-list-item(@fa-var-check-square);
+
+
+				// and makes the grade appear in a green losenge
+				.grade{
+					.grade-bands(@brand-success);
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Utilities
+ **/
+
+.grade-bands(@grade-base){
+	// Colour banding for different grade groups
+	&.grade-band-1{ .label-variant(lighten(@grade-base, 35%)); };
+	&.grade-band-2{ .label-variant(lighten(@grade-base, 25%)); };
+	&.grade-band-3{ .label-variant(lighten(@grade-base, 10%)); };
+	&.grade-band-4{ .label-variant(@grade-base); };
+	&.grade-band-5{ .label-variant(darken(@grade-base, 10%)); };
+	&.grade-band-6{ .label-variant(darken(@grade-base, 25%)); };
+	&.grade-band-7{ .label-variant(darken(@grade-base, 35%)); };
+}
+
+// Border radius for all browsers.
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Box shadow for all browsers
+.box-shadow (@x: 0px, @y: 3px, @blur: 5px, @alpha: 0.5) {
+    -webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+    box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+// Make a list item a FontAwesome list item.
+.fa-list-item(@fa-var){
+	padding: 0.4em;
+	&:before{
+		.fa();
+		.fa-li();
+		.fa-2x();
+		content: @fa-var;
+	}
+}

@@ -13,7 +13,7 @@
 				      <span class="input-group-btn">
 				        <button class="btn btn-default" ng-click="getCurrentLocation()" ng-show="supportsGeo">Find me</button>
 				      </span>
-					  <input name="climbName" type="text" class="form-control" ng-model="locationSearch" placeholder="Climb, venue, location, postcode">
+					  <input name="climbName" type="text" class="form-control" ng-model="search.query" placeholder="Climb, venue, location, postcode">
 				</div>
 				<div class="form-group">
 					<label>Min/Max distance</label>
@@ -21,11 +21,11 @@
 				</div>
 				<div class="form-group">
 					<label>Grade</label>
-					<div ui-slider="{range: true}" min="0" max="200" ng-model="search.distance"></div>
+					<div ui-slider="{range: true}" min="0" max="10" ng-model="search.grade"></div>
 				</div>
 				<div class="form-group">
 					<label>Stars</label>
-					<div ui-slider="{range: true}" min="0" max="200" ng-model="search.distance"></div>
+					<div ui-slider="{range: true}" min="0" max="5" ng-model="search.stars"></div>
 				</div>
 				<div class="form-group">
 					<label>Rock type</label>
@@ -34,9 +34,9 @@
 					</ul>
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block">Find climbs</button>
+			<button type="button" ng-click="requestClimbs(search)" class="btn btn-primary btn-lg btn-block">Find climbs</button>
 		</form>
-	
+
 	</div>
 	<div class="col-md-6">
 		<leaflet height="250px" markers="markers" paths="map.paths" center="map.centre"></leaflet>
